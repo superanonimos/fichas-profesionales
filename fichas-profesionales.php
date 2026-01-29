@@ -40,7 +40,7 @@ function fichas_profesionales_init() {
 	);
 }
 
-add_action( 'plugins_loaded', 'fichas_profesionales_init' );
+add_action( 'init', 'fichas_profesionales_init' );
 
 function fichas_profesionales_register_shortcodes() {
 	add_shortcode( 'fichas_profesionales_registro', 'fichas_profesionales_registration_form_shortcode' );
@@ -87,7 +87,7 @@ function fichas_profesionales_registration_form_shortcode() {
 			$linkedin            = isset( $_POST['linkedin'] ) ? sanitize_text_field( wp_unslash( $_POST['linkedin'] ) ) : '';
 			$tiktok              = isset( $_POST['tiktok'] ) ? sanitize_text_field( wp_unslash( $_POST['tiktok'] ) ) : '';
 			$demo_video          = isset( $_POST['demo_video'] ) ? esc_url_raw( wp_unslash( $_POST['demo_video'] ) ) : '';
-			$membership_plan_raw = isset( $_POST['membership_plan'] ) ? wp_unslash( $_POST['membership_plan'] ) : '';
+			$membership_plan_raw = isset( $_POST['membership_plan'] ) ? sanitize_text_field( wp_unslash( $_POST['membership_plan'] ) ) : '';
 			$address_1           = trim( $address_street . ' ' . $address_number );
 			$address_2           = $address_department;
 			$allowed_plans       = array( 'quarterly', 'semiannual', 'annual' );
@@ -283,7 +283,7 @@ function fichas_profesionales_registration_form_shortcode() {
 	$linkedin_value           = isset( $_POST['linkedin'] ) ? wp_unslash( $_POST['linkedin'] ) : '';
 	$tiktok_value             = isset( $_POST['tiktok'] ) ? wp_unslash( $_POST['tiktok'] ) : '';
 	$demo_video_value         = isset( $_POST['demo_video'] ) ? wp_unslash( $_POST['demo_video'] ) : '';
-	$membership_plan_value    = isset( $_POST['membership_plan'] ) ? wp_unslash( $_POST['membership_plan'] ) : '';
+	$membership_plan_value    = isset( $_POST['membership_plan'] ) ? sanitize_text_field( wp_unslash( $_POST['membership_plan'] ) ) : '';
 
 	echo '<form method="post" enctype="multipart/form-data" class="fp-registration-form">';
 
